@@ -1,22 +1,20 @@
 import React, { Component} from 'react'
 import M from 'materialize-css';
+import { connect } from 'react-redux'
 import SignedInLinks from './SignedInLinks';
 import SignOutLinks from './SignOutLinks';
 
-interface IState {
-    auth: boolean;
+
+interface IProps {
+    auth:any;
 }
 
-export default class Header extends Component<{},IState> {
-
-    constructor(props:any){
-        super(props);
-        this.state = {
-            auth:true
-        };
-    }
+class Header extends Component<IProps,{}> {
 
     componentDidMount(){
+        M.AutoInit();
+    }
+    componentDidUpdate(){
         M.AutoInit();
     }
     render() {
@@ -29,7 +27,7 @@ export default class Header extends Component<{},IState> {
                 </div>
             </nav>
             {
-                this.state.auth
+                this.props.auth.uid
             ?
                 <SignedInLinks/>
             :
@@ -40,3 +38,10 @@ export default class Header extends Component<{},IState> {
         )
     }
 }
+const mapStateToProps = (state:any) => {
+    return {
+        auth: state.firebase.auth,
+    }
+}
+
+export default connect(mapStateToProps, null)(Header);

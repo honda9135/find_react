@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { signOut } from '../../store/actions/authActions'
 
-export default class SignedInLinks extends Component {
+interface IProps {
+    signOut:Function;
+}
+class SignedInLinks extends Component<IProps,{}> {
     render() {
         return (
             <ul className="sidenav" id="mobile-demo">
-                <li><a href="/" className='green-text'>ログアウト</a></li>
+                <li><a href="/" className='green-text' onClick={() =>{this.props.signOut()}} >ログアウト</a></li>
                 <li><a href="/" className='green-text'>マイページ</a></li>
                 <li><a href="/" className='green-text'>マイショップ</a></li>
                 <li><a href="/contact" className='green-text'>お問い合わせ</a></li>
@@ -18,3 +23,11 @@ export default class SignedInLinks extends Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch:any) => {
+    return {
+        signOut: () => dispatch(signOut())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignedInLinks);

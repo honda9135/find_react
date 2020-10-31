@@ -4,6 +4,8 @@ import Footer from './components/layout/Footer';
 import SearchBox from './components/pages/SearchBox';
 import { BrowserRouter,Switch , Route } from 'react-router-dom';
 import Contact from './components/pages/Contact'
+import SignIn from './components/pages/auth/SignIn';
+import SignUp from './components/pages/auth/SignUp';
 
 function App() {
   return (
@@ -12,7 +14,10 @@ function App() {
         <Header/>
         <Switch>
           <Route exact path='/' component={SearchBox} />
+          <Route exact path='/signin' component={SignIn} />
+          <Route exact path='/signup' component={SignUp} />
           <Route path='/contact' component={Contact} />
+
         </Switch>
         <Footer/>
     </div>
