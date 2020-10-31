@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import M from 'materialize-css'
 
 interface IState {
-    auth: boolean;
     pref:string;
     town:string;
     townSearch:JSX.Element[];
@@ -13,7 +12,6 @@ export default class SearchBox extends Component<{},IState> {
     constructor(props:any){
         super(props);
         this.state ={
-            auth:true,
             pref:'',
             town:'',
             townSearch:[],
