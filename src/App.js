@@ -1,5 +1,6 @@
 import './App.css';
 import Header from './components/layout/Header';
+import BottomNav from './components/layout/BottomNav';
 import Footer from './components/layout/Footer';
 import SearchBox from './components/pages/SearchBox';
 import { BrowserRouter,Switch , Route } from 'react-router-dom';
@@ -17,8 +18,8 @@ function App() {
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
           <Route path='/contact' component={Contact} />
-
         </Switch>
+        <BottomNav/>
         <Footer/>
     </div>
     </BrowserRouter>
