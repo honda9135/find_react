@@ -7,10 +7,9 @@ export default class BottomNav extends Component {
                 <nav>
                     <div className="nav-wrapper row white">
                         <ul>
-                            <li className="col s3"><a href="./"><i className="material-icons" style={{color:"grey"}}>home</i></a></li>
-                            <li className="col s3"><a href="./"><i className="material-icons" style={{color:"grey"}}>person</i></a></li>
-                            <li className="col s3"><a href="./"><i className="material-icons" style={{color:"grey"}}>refresh</i></a></li>
-                            <li className="col s3"><a href="./"><i className="material-icons" style={{color:"grey"}}>face</i></a></li>
+                            <li className="col s4"><a href="./"><i className="material-icons" style={{color:"grey"}}>home</i></a></li>
+                            <li className="col s4"><a href="./"><i className="material-icons" style={{color:"grey"}}>search</i></a></li>
+                            <li className="col s4"><a href="./"><i className="material-icons" style={{color:"grey"}}>person</i></a></li>
                         </ul>
                     </div>
                 </nav>
