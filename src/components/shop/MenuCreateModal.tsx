@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function MenuCreateModal() {
+export default function MenuCreateModal(props:any) {
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
@@ -50,7 +50,7 @@ export default function MenuCreateModal() {
                 aria-describedby="simple-modal-description"
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <MenuCreateForm/>
+                    <MenuCreateForm id={props.id}/>
                 </div>
             </Modal>
         </div>

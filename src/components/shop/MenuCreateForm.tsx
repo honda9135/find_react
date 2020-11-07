@@ -1,21 +1,28 @@
 import React, { Component } from 'react'
+import firebase from '../../config/fbConfig'
+import {createMenu} from '../../store/actions/menuAction'
+import { connect } from 'react-redux'
 
 interface IState {
     name: string;
     price:number;
-    image:string;
+    image:File|null;
     category:string;
     errtext:string
 }
+interface IProps {
+    createMenu:Function;
+    id:string
+}
 
 
-export default class MenuCreateForm extends Component<{},IState>{
+class MenuCreateForm extends Component<IProps,IState>{
     constructor(props:any) {
         super(props)
         this.state = {
             name: '',         //メニューの名前
             price: 0,         //値段
-            image:'',         //画像の場所
+            image:null,         //画像の場所
             category:'',      //カテゴリー
             errtext:''
         }
@@ -23,7 +30,9 @@ export default class MenuCreateForm extends Component<{},IState>{
         this.handleChangePrice = this.handleChangePrice.bind(this)
         this.handleChangeImage = this.handleChangeImage.bind(this)
         this.handleChangeCategory = this.handleChangeCategory.bind(this)
+        this.registFireStorage = this.registFireStorage.bind(this)        
         this.handleSubmit = this.handleSubmit.bind(this)
+
     }
 
     handleChangeName = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -37,13 +46,28 @@ export default class MenuCreateForm extends Component<{},IState>{
         })
     }
     handleChangeImage = (e:React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files===null){
+            return
+        }
+        console.log(e.target.files)
         this.setState({
-            image: e.currentTarget.value
+            image: e.target.files[0] 
         })
     }
     handleChangeCategory = (e:React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             category: e.currentTarget.value
+        })
+    }
+    registFireStorage(file:File){
+        let storageRef = firebase.storage().ref().child(file.name);
+        storageRef.put(file)
+        .then(function(snapshot) {
+            alert("画像をストレージに保存しました");
+        }).then(() =>{
+            storageRef.getDownloadURL().then(imageUrl => {
+                console.log(imageUrl,"imageUrl")
+            })
         })
     }
     handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,14 +79,20 @@ export default class MenuCreateForm extends Component<{},IState>{
         if(this.state.category===""){
             new_errtext += 'カテゴリーの入力してください。¥n'
         }
-        if(new_errtext===""){
+        if(this.state.image===null){
+            new_errtext += "画像を入力してください"
+        }
+        if(new_errtext===""&&this.state.image!==null){
             const MenuInfo = {
+                id:this.props.id,
                 name: this.state.name,        //名前
-                phone: this.state.price,      //値段
+                price: this.state.price,      //値段
+                category:this.state.category,
                 image: this.state.image,       //画像のパス
             }
             console.log(MenuInfo)
-            alert('メニューを追加します。')
+            this.props.createMenu(MenuInfo)
+            this.registFireStorage(this.state.image)
         }else{
             this.setState({
                 errtext:new_errtext
@@ -88,7 +118,12 @@ export default class MenuCreateForm extends Component<{},IState>{
                     </div>
                     <div>
                         <label htmlFor="img">追加メニューの画像</label><br/>
-                        <input type="file" id="img" value={this.state.image} onChange={this.handleChangeImage}/>
+                        {this.state.image!==null
+                        ?
+                        <input type="file" id="img"  onChange={this.handleChangeImage}/>
+                        :
+                        <input type="file" id="img" onChange={this.handleChangeImage}/>
+                        }
                     </div>
                     {this.state.errtext==="" ? null : <p className='red-text'>{this.state.errtext}</p>}
                     <div className="input-field contactButton">
@@ -99,3 +134,11 @@ export default class MenuCreateForm extends Component<{},IState>{
         )
     }
 }
+
+const mapDispatchToProps = (dispatch:any) => {
+    return {
+        createMenu: (menu:any) => dispatch(createMenu(menu))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(MenuCreateForm)

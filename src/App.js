@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/layout/Header';
 // import BottomNav from './components/layout/BottomNav';
 // import Footer from './components/layout/Footer';
-import SearchBox from './components/pages/SearchBox';
+import Top from './components/pages/Top';
 import { BrowserRouter,Switch , Route } from 'react-router-dom';
 import Contact from './components/pages/Contact'
 import SignIn from './components/pages/auth/SignIn';
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
         <Header/>
         <Switch>
-          <Route exact path='/' component={SearchBox} />
+          <Route exact path='/' component={Top} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/contact' component={Contact} />

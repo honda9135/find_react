@@ -49,7 +49,7 @@ class Shop extends Component<IProps,IState> {
                     <Card style={{float:"left",width:"33%",marginTop:"3px"}}>
                         <CardActionArea>
                             <CardContent>
-                                    <Image src={element.image}/>
+                                    <Image src={element.image===""?"nodata":element.image}/>
                                 <Typography gutterBottom variant="h5" component="h2">
                                     {element.name}
                                 </Typography>
@@ -77,14 +77,11 @@ class Shop extends Component<IProps,IState> {
             {
                 this.state.userId===this.props.auth.uid
                 ?
-                <MenuCreateModal/>
+                <MenuCreateModal id={this.props.match.params.id}/>
                 :
                 null
             }
             <hr/>
-            {this.state.menu}
-            {this.state.menu}
-            {this.state.menu}
             {this.state.menu}
             </div>
             )
