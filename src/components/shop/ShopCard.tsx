@@ -49,7 +49,9 @@ export default class ShopCard extends Component<IProps,IState> {
             <Card style={{float:"left",width:"33%"}}>
             <CardActionArea>
                 <CardContent>
-                    <Image src={this.state.shop_image}/>
+                    <a href={"/shop/"+this.props.id}>
+                        <Image src={this.state.shop_image}/>
+                    </a>
                     <Typography gutterBottom variant="h5" component="h2">
                         {this.state.name}
                     </Typography>

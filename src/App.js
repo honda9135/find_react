@@ -7,6 +7,7 @@ import { BrowserRouter,Switch , Route } from 'react-router-dom';
 import Contact from './components/pages/Contact'
 import SignIn from './components/pages/auth/SignIn';
 import SignUp from './components/pages/auth/SignUp';
+import Shop from "./components/pages/Shop"
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/contact' component={Contact} />
+          <Route path='/shop/:id' component={Shop} />
         </Switch>
           {/* <BottomNav/>
-          <Footer/> */}
+          <Footer/>  */}
     </div>
     </BrowserRouter>
   );
