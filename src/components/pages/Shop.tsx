@@ -3,11 +3,13 @@ import firebase from '../../config/fbConfig'
 import { Card,CardActionArea,CardContent} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Image from 'material-ui-image'
-
+import MenuCreateModal from '../shop/MenuCreateModal';
+import { connect } from 'react-redux'
 
 interface IState {
     name:string
     menu:JSX.Element[]
+    userId:string
 }
 interface IProps {
     match:{
@@ -15,27 +17,33 @@ interface IProps {
             id:string
         }
     }
+    auth:any
 }
 
 
-export default class Shop extends Component<IProps,IState> {
-    constructor(props:any){
+class Shop extends Component<IProps,IState> {
+    constructor(props:IProps){
         super(props)
         this.state={
             name:"",
-            menu:[]
+            menu:[],
+            userId:""
         }
         this.getMenu = this.getMenu.bind(this)
         this.getMenu()
     }
     
 
-    getMenu() {
+    getMenu():void {
         var db = firebase.firestore()
         db.collection('shops').doc(this.props.match.params.id).get()
         .then((snapshot) => {
-            var data:any = snapshot.data()
+            var data:firebase.firestore.DocumentData|undefined = snapshot.data()
             var menu:JSX.Element[] = []
+            if(data===undefined){
+                alert("そのお店のデータはありません。")
+                return 
+            }
             data.menu.forEach((element:any) => {
                 menu.push(
                     <Card style={{float:"left",width:"33%",marginTop:"3px"}}>
@@ -55,7 +63,8 @@ export default class Shop extends Component<IProps,IState> {
             });
             this.setState({
                 name:data.name,
-                menu:menu
+                menu:menu,
+                userId:data.user
             })
         })
         .catch((err) => {
@@ -65,8 +74,14 @@ export default class Shop extends Component<IProps,IState> {
     render() {
         return (<div>
             <h1>{this.state.name}</h1>
+            {
+                this.state.userId===this.props.auth.uid
+                ?
+                <MenuCreateModal/>
+                :
+                null
+            }
             <hr/>
-            <h2>メニュー</h2>
             {this.state.menu}
             {this.state.menu}
             {this.state.menu}
@@ -75,3 +90,11 @@ export default class Shop extends Component<IProps,IState> {
             )
     }
 }
+
+const mapStateToProps = (state:any) => {
+    return {
+        auth: state.firebase.auth,
+    }
+}
+
+export default connect(mapStateToProps, null)(Shop);

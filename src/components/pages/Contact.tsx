@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 interface IState {
     name: string;
     phone:string;
@@ -94,6 +95,7 @@ export default class Contact extends Component<{},IState>{
                     <div className="input-field contactButton">
                         <button className="btn contactButton">問い合わせ</button>
                     </div>
+
                 </form>
             </div>
         )
