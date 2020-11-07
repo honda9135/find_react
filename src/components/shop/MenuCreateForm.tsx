@@ -80,7 +80,7 @@ export default class MenuCreateForm extends Component<{},IState>{
                     </div>
                     <div className="input-field">
                         <label htmlFor="price" >値段</label>
-                        <input type="number" id="price" value={this.state.price} onChange={this.handleChangePrice} />
+                        <input type="number"  min="0" id="price" value={this.state.price} onChange={this.handleChangePrice} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="category" >カテゴリー</label>
