@@ -1,7 +1,6 @@
 import './App.css';
 import Header from './components/layout/Header';
-// import BottomNav from './components/layout/BottomNav';
-// import Footer from './components/layout/Footer';
+import BottomNav from './components/layout/BottomNav';
 import Top from './components/pages/Top';
 import { BrowserRouter,Switch , Route } from 'react-router-dom';
 import Contact from './components/pages/Contact'
@@ -22,8 +21,7 @@ function App() {
           <Route path='/contact' component={Contact} />
           <Route path='/shop/:id' component={Shop} />
         </Switch>
-          {/* <BottomNav/>
-          <Footer/>  */}
+          <BottomNav/>
       </div>
     </BrowserRouter>
   );
