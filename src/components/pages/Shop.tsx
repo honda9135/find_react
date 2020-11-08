@@ -73,7 +73,7 @@ class Shop extends Component<IProps,IState> {
     }
     render() {
         return (<div>
-            <h1>{this.state.name}</h1>
+            <p style={{fontSize:"30px",margin:0}}>{this.state.name}</p>
             {
                 this.state.userId===this.props.auth.uid
                 ?
