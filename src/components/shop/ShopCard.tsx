@@ -13,6 +13,7 @@ interface IState {
 }
 interface IProps {
     id:string
+    style:any
 }
 
 
@@ -46,7 +47,7 @@ export default class ShopCard extends Component<IProps,IState> {
     }
     render() {
         return (
-            <Card style={{float:"left",width:"33%"}}>
+            <Card style={this.props.style}>
             <CardActionArea>
                 <CardContent>
                     <a href={"/shop/"+this.props.id}>

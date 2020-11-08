@@ -6,22 +6,26 @@ import { BrowserRouter,Switch , Route } from 'react-router-dom';
 import Contact from './components/pages/Contact'
 import SignIn from './components/pages/auth/SignIn';
 import SignUp from './components/pages/auth/SignUp';
-import Shop from "./components/pages/Shop"
+import Menu from "./components/pages/Menu"
 import history from './config/history';
+import Shop from './components/pages/Shop';
+import MyShop from './components/pages/MyShop';
 
 function App() {
   return (
     <BrowserRouter history={history} forceRefresh={true}>
-    <div className="App">
+      <div className="App">
         <Header/>
         <Switch>
           <Route exact path='/' component={Top} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/contact' component={Contact} />
-          <Route path='/shop/:id' component={Shop} />
+          <Route path="/shop/:id" component={Shop}/>
+          <Route path='/menu/:id' component={Menu} />
+          <Route path='/myshop' component={MyShop} />
         </Switch>
-          <BottomNav/>
+        <BottomNav/>
       </div>
     </BrowserRouter>
   );

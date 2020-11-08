@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import firebase from '../../config/fbConfig'
-import { Card,CardActionArea,CardContent} from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 import Image from 'material-ui-image'
-import MenuCreateModal from '../shop/MenuCreateModal';
 import { connect } from 'react-redux'
 
 
 interface IState {
     name:string
-    menu:JSX.Element[]
+    image:string
     userId:string
 }
 interface IProps {
@@ -27,55 +24,28 @@ class Shop extends Component<IProps,IState> {
         super(props)
         this.state={
             name:"",
-            menu:[],
+            image:"",
             userId:""
         }
-        this.getMenu = this.getMenu.bind(this)
-        this.getMenu()
+        this.getShop = this.getShop.bind(this)
+        console.log(this.props.match.params.id,"id")
+        this.getShop()
     }
     
 
-    getMenu():void {
+    getShop():void {
         var db = firebase.firestore()
         db.collection('shops').doc(this.props.match.params.id).get()
         .then((snapshot) => {
             var data:firebase.firestore.DocumentData|undefined = snapshot.data()
-            var menu:JSX.Element[] = []
             if(data===undefined){
                 alert("そのお店のデータはありません。")
                 return 
             }
-            data.menu.forEach((element:any) => {
-                menu.push(
-                    <Card style={{float:"left",width:"33%",marginTop:"3px"}}>
-                        <CardActionArea>
-                            <CardContent>
-                                {element.image.includes(".mp4")
-                                ?
-                                <video controls style={{width:"100%"}}>
-                                    <source src={element.image}
-                                            type="video/mp4" />
-                                            ビデオが対応していないブラウザです。ごめんなさい。<br/>
-                                            推奨環境:chrome
-                                </video>
-                                :
-                                <Image src={element.image===""?"nodata":element.image}/>
-                                }
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {element.name}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    値段（税込み）:{element.price+"円"}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                )
-            });
+            console.log(data,"data")
             this.setState({
                 name:data.name,
-                menu:menu,
-                userId:data.user
+                image:data.shop_image,
             })
         })
         .catch((err) => {
@@ -83,17 +53,12 @@ class Shop extends Component<IProps,IState> {
         });
     }
     render() {
-        return (<div>
-            <p style={{fontSize:"30px",margin:0}}>{this.state.name}</p>
-            {
-                this.state.userId===this.props.auth.uid
-                ?
-                <MenuCreateModal id={this.props.match.params.id}/>
-                :
-                null
-            }
-            <hr/>
-            {this.state.menu}
+        return (
+            <div>
+                <p style={{fontSize:"30px",margin:0}}>{this.state.name}</p>
+                <hr/>
+                    <Image src={this.state.image}></Image>
+                <a href={"/menu/"+this.props.match.params.id}>menuへジャンプ</a>
             </div>
             )
     }
