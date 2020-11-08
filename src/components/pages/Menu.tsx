@@ -59,9 +59,9 @@ class Menu extends Component<IProps,IState> {
                                             推奨環境:chrome
                                 </video>
                                 :
-                                <Image src={element.image===""?"nodata":element.image}/>
+                                <Image style={{boxShadow:"0px 2px 10px 0px"}} src={element.image===""?"nodata":element.image}/>
                                 }
-                                <Typography gutterBottom variant="h5" component="h2">
+                                <Typography style={{fontFamily:"serif",display:"inline-block",fontSize:"3vw"}} gutterBottom variant="h5" component="h2">
                                     {element.name}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
@@ -84,7 +84,6 @@ class Menu extends Component<IProps,IState> {
     }
     render() {
         return (<div>
-            <p style={{fontSize:"30px",margin:0}}>{this.state.name}</p>
             {
                 this.state.userId===this.props.auth.uid
                 ?
@@ -93,7 +92,7 @@ class Menu extends Component<IProps,IState> {
                 null
             }
             <hr/>
-            {this.state.menu}
+                {this.state.menu}
             </div>
             )
     }
