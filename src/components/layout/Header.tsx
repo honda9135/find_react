@@ -27,7 +27,7 @@ class Header extends Component<IProps,IState> {
             <div id="header">
             <nav>
                 <div className="nav-wrapper green">
-                <a href="/" className="brand-logo">Find</a>
+                <a href="/" style={{fontSize:45}}>Find</a>
                 <Button className="right" style={{height:"100%"}} onClick={()=>{this.setState({flag:true})}}><DehazeIcon>Dehaze</DehazeIcon></Button>
                 <Drawer anchor="right" open={this.state.flag} onClose={() =>{this.setState({flag:false})}}>
                 {

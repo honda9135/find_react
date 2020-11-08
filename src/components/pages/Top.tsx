@@ -173,7 +173,7 @@ export default class Top extends Component<{},IState> {
                     </Select>
                 </FormControl>
 
-                <FormControl style={{minWidth:120,margin: "3px"}}>
+                <FormControl style={{minWidth:150,margin: "3px"}}>
                     <InputLabel id="demo-simple-select-label">カテゴリーを選択</InputLabel>
                     <Select 
                         labelId="demo-simple-select-label"
