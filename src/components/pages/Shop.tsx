@@ -6,6 +6,7 @@ import Image from 'material-ui-image'
 import MenuCreateModal from '../shop/MenuCreateModal';
 import { connect } from 'react-redux'
 
+
 interface IState {
     name:string
     menu:JSX.Element[]
@@ -49,7 +50,17 @@ class Shop extends Component<IProps,IState> {
                     <Card style={{float:"left",width:"33%",marginTop:"3px"}}>
                         <CardActionArea>
                             <CardContent>
-                                    <Image src={element.image===""?"nodata":element.image}/>
+                                {element.image.includes(".mp4")
+                                ?
+                                <video controls style={{width:"100%"}}>
+                                    <source src={element.image}
+                                            type="video/mp4" />
+                                            ビデオが対応していないブラウザです。ごめんなさい。<br/>
+                                            推奨環境:chrome
+                                </video>
+                                :
+                                <Image src={element.image===""?"nodata":element.image}/>
+                                }
                                 <Typography gutterBottom variant="h5" component="h2">
                                     {element.name}
                                 </Typography>
