@@ -47,12 +47,12 @@ class Menu extends Component<IProps,IState> {
             }
             data.menu.forEach((element:any) => {
                 menu.push(
-                    <Card style={{float:"left",width:"33%",marginTop:"3px"}}>
-                        <CardActionArea>
+                    <Card style={{float:"left",width:"33%",height:383.5,marginTop:"3px",boxShadow:"none"}}>
+                        <CardActionArea style={{alignItems: "center"}}>
                             <CardContent>
                                 {element.image.includes(".mp4")
                                 ?
-                                <video controls style={{width:"100%"}}>
+                                <video controls style={{width:"100%",alignItems: "center",display: "flex"}}>
                                     <source src={element.image}
                                             type="video/mp4" />
                                             ビデオが対応していないブラウザです。ごめんなさい。<br/>
@@ -61,11 +61,12 @@ class Menu extends Component<IProps,IState> {
                                 :
                                 <Image style={{boxShadow:"0px 2px 10px 0px"}} src={element.image===""?"nodata":element.image}/>
                                 }
-                                <Typography style={{fontFamily:"serif",display:"inline-block",fontSize:"3vw"}} gutterBottom variant="h5" component="h2">
+                                <Typography style={{fontFamily:"serif",display:"inline-block",fontSize:"2vw",marginTop:"15px"}} gutterBottom variant="h5" component="h2">
                                     {element.name}
                                 </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    値段（税込み）:{element.price+"円"}
+                                <br/>
+                                <Typography style={{display:"inline-block",fontSize:"1.5vw"}} variant="body2" color="textSecondary" component="p">
+                                    {element.price+"円"}(税込)
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
