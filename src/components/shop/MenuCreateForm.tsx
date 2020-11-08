@@ -92,7 +92,7 @@ class MenuCreateForm extends Component<IProps,IState>{
             }
             console.log(MenuInfo)
             this.props.createMenu(MenuInfo)
-            this.registFireStorage(this.state.image)
+            //:this.registFireStorage(this.state.image)
         }else{
             this.setState({
                 errtext:new_errtext
