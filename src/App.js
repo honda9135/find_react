@@ -8,10 +8,11 @@ import Contact from './components/pages/Contact'
 import SignIn from './components/pages/auth/SignIn';
 import SignUp from './components/pages/auth/SignUp';
 import Shop from "./components/pages/Shop"
+import history from './config/history';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter history={history} forceRefresh={true}>
     <div className="App">
         <Header/>
         <Switch>
@@ -23,7 +24,7 @@ function App() {
         </Switch>
           {/* <BottomNav/>
           <Footer/>  */}
-    </div>
+      </div>
     </BrowserRouter>
   );
 }

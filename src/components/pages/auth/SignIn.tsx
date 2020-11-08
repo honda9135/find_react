@@ -11,6 +11,7 @@ interface IProps {
     signIn:Function;
     authError:any;
     auth:any;
+    history:any
 }
 
 class SignIn extends Component<IProps,IState> {
