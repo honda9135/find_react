@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import M from 'materialize-css'
 import ShopDisp from '../shop/ShopDisp';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -36,13 +35,6 @@ export default class Top extends Component<{},IState> {
         this.onChangeSearchWord= this.onChangeSearchWord.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleReset = this.handleReset.bind(this)
-    }
-    componentDidMount(){
-        M.AutoInit()
-    }
-
-    componentDidUpdate(){
-        M.AutoInit()
     }
 
     async gettown(prefid:string){
