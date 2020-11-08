@@ -47,8 +47,8 @@ class Menu extends Component<IProps,IState> {
             }
             data.menu.forEach((element:any) => {
                 menu.push(
-                    <Card style={{float:"left",width:"33%",height:383.5,marginTop:"3px",boxShadow:"none"}}>
-                        <CardActionArea style={{alignItems: "center"}}>
+                    <Card style={{float:"left",width:"33%",marginTop:"3px",boxShadow:"none"}}>
+                        <CardActionArea >
                             <CardContent>
                                 {element.image.includes(".mp4")
                                 ?
