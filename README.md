@@ -1,6 +1,6 @@
 # Initialize Setting
 
-Create File 
+Create File /src/config/fbParam.js
 
 # Getting Started with Create React App
 
