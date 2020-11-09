@@ -2,7 +2,7 @@
 
 Create File /src/config/fbParam.js
 
-  # /src/config/fbParam.js
+    # /src/config/fbParam.js
     var firebaseConfig = {
         apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
         authDomain: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
