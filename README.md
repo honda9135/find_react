@@ -2,6 +2,20 @@
 
 Create File /src/config/fbParam.js
 
+  # /src/config/fbParam.js
+    var firebaseConfig = {
+        apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        authDomain: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        databaseURL: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        projectId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        storageBucket: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        messagingSenderId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        measurementId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    };
+
+    export default firebaseConfig;
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
