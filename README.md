@@ -5,14 +5,14 @@ Create File /src/config/fbParam.js
     # /src/config/fbParam.js
     
     var firebaseConfig = {
-        apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        authDomain: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        databaseURL: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        projectId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        storageBucket: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        messagingSenderId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        appId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        measurementId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        apiKey: "XXX",
+        authDomain: "XXX",
+        databaseURL: "XXX",
+        projectId: "XXX",
+        storageBucket: "XXXX",
+        messagingSenderId: "XXX",
+        appId: "XXX",
+        measurementId: "XXX"
     };
 
     export default firebaseConfig;
