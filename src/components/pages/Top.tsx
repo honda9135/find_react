@@ -203,7 +203,7 @@ class Top extends Component<IProps,IState> {
                         Reset
                     </Button>
                 </div>
-                {this.state.dispData===null
+                {this.state.dispData===null&&this.props.profile.isEmpty===false 
                 ?
                     <ShopDisp pref={this.props.profile.pref} city={this.props.profile.city} searchWord={""} />
                 :
