@@ -39,7 +39,8 @@ export const signUp = (newUser) => {
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
                 initials: newUser.firstName[0] + newUser.lastName[0],
-                follow: []
+                pref: newUser.pref,
+                city:newUser.city
             })
         }).then(() => {
             firebase.auth().currentUser.sendEmailVerification()

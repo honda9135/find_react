@@ -25,24 +25,21 @@ class MyShop extends Component<IProps,IState> {
         var db = firebase.firestore()
         db.collection('shops')
             .where('user',"==",this.props.auth.uid)
-            .get()
-                .then((snapshot) => {
-                    if (snapshot.empty) {
-                        alert("登録されているお店はありません")
-                        return 
-                    }
-                    snapshot.forEach(doc =>{
-                        shopCard.push(<ShopCard id={doc.id} style={{width:"100%"}}/>)
-                    })
-                    this.setState({
-                        shopCard:shopCard
-                    })
+            .onSnapshot(snapshot =>{
+                if (snapshot.empty) {
+                    alert("登録されているお店はありません")
+                    return 
+                }
+                snapshot.forEach(doc =>{
+                    shopCard.push(<ShopCard id={doc.id} style={{height:"30%"}}/>)
                 })
-                .catch((err) => {
-                    console.log('Error getting documents', err);
-                });
+                this.setState({
+                    shopCard:shopCard
+                })
+            })
     }
     render() {
+        console.log(this.props.auth)
         return (
             <div>
                 <ShopCreateModal id={this.props.auth.uid}/>

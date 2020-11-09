@@ -57,8 +57,8 @@ class Shop extends Component<IProps,IState> {
             <div>
                 <p style={{fontSize:"30px",margin:0}}>{this.state.name}</p>
                 <hr/>
-                    <Image src={this.state.image}></Image>
                 <a href={"/menu/"+this.props.match.params.id}>menuへジャンプ</a>
+                    <Image src={this.state.image} ></Image>
             </div>
             )
     }

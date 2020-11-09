@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import firebase from '../../config/fbConfig'
+// import firebase from '../../config/fbConfig'
 import {createMenu} from '../../store/actions/menuAction'
 import { connect } from 'react-redux'
 
@@ -12,7 +12,8 @@ interface IState {
 }
 interface IProps {
     createMenu:Function;
-    id:string
+    id:string;
+    closeModal:Function;
 }
 
 
@@ -29,8 +30,7 @@ class MenuCreateForm extends Component<IProps,IState>{
         this.handleChangeName = this.handleChangeName.bind(this)
         this.handleChangePrice = this.handleChangePrice.bind(this)
         this.handleChangeImage = this.handleChangeImage.bind(this)
-        this.handleChangeCategory = this.handleChangeCategory.bind(this)
-        this.registFireStorage = this.registFireStorage.bind(this)        
+        this.handleChangeCategory = this.handleChangeCategory.bind(this)      
         this.handleSubmit = this.handleSubmit.bind(this)
 
     }
@@ -59,17 +59,6 @@ class MenuCreateForm extends Component<IProps,IState>{
             category: e.currentTarget.value
         })
     }
-    registFireStorage(file:File){
-        let storageRef = firebase.storage().ref().child(file.name);
-        storageRef.put(file)
-        .then(function(snapshot) {
-            alert("画像をストレージに保存しました");
-        }).then(() =>{
-            storageRef.getDownloadURL().then(imageUrl => {
-                console.log(imageUrl,"imageUrl")
-            })
-        })
-    }
     handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         var new_errtext = ''
@@ -92,7 +81,7 @@ class MenuCreateForm extends Component<IProps,IState>{
             }
             console.log(MenuInfo)
             this.props.createMenu(MenuInfo)
-            //:this.registFireStorage(this.state.image)
+            this.props.closeModal()//TODO:アクションが終了してから閉じるようにしたい。
         }else{
             this.setState({
                 errtext:new_errtext

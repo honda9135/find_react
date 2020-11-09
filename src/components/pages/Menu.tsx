@@ -37,8 +37,7 @@ class Menu extends Component<IProps,IState> {
 
     getMenu():void {
         var db = firebase.firestore()
-        db.collection('shops').doc(this.props.match.params.id).get()
-        .then((snapshot) => {
+        db.collection('shops').doc(this.props.match.params.id).onSnapshot((snapshot) =>{
             var data:firebase.firestore.DocumentData|undefined = snapshot.data()
             var menu:JSX.Element[] = []
             if(data===undefined){
@@ -79,9 +78,6 @@ class Menu extends Component<IProps,IState> {
                 userId:data.user
             })
         })
-        .catch((err) => {
-            console.log('Error getting documents', err);
-        });
     }
     render() {
         return (<div>

@@ -1,7 +1,7 @@
 import firebase from '../../config/fbConfig'
 
 
-export const createMenu = (menu) => {
+export const createMenu =  (menu) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         let storageRef = firebase.storage().ref().child(menu.image.name);
         storageRef.put(menu.image)

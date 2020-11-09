@@ -6,6 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux'
 
 
 interface IState {
@@ -17,9 +18,14 @@ interface IState {
     dispData:JSX.Element|null
 }
 
-export default class Top extends Component<{},IState> {
+interface IProps {
+    profile:any;
+}
+
+class Top extends Component<IProps,IState> {
     constructor(props:any){
         super(props);
+        console.log(this.props.profile)
         this.state ={
             pref:'',
             city:'',
@@ -94,6 +100,7 @@ export default class Top extends Component<{},IState> {
     }
 
     render() {
+        console.log(this.props.profile)
         return (
             <div className='container'>
                 <FormControl style={{minWidth:120,margin: "3px"}}>
@@ -196,8 +203,24 @@ export default class Top extends Component<{},IState> {
                         Reset
                     </Button>
                 </div>
-                {this.state.dispData}
+                {this.state.dispData===null
+                ?
+                    <ShopDisp pref={this.props.profile.pref} city={this.props.profile.city} searchWord={""} />
+                :
+                    this.state.dispData
+                }
             </div>
         )
     }
 }
+
+const mapStateToProps = (state:any) => {
+    return {
+        auth: state.firebase.auth,
+        authError: state.auth.authError,
+        profile: state.firebase.profile
+    }
+}
+
+
+export default connect(mapStateToProps, null)(Top);

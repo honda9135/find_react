@@ -50,7 +50,7 @@ export default function MenuCreateModal(props:any) {
                 aria-describedby="simple-modal-description"
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <MenuCreateForm id={props.id}/>
+                    <MenuCreateForm id={props.id} closeModal={handleClose}/>
                 </div>
             </Modal>
         </div>
