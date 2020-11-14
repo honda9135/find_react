@@ -16,15 +16,17 @@ function App() {
     <BrowserRouter history={history} forceRefresh={true}>
       <div className="App">
         <Header/>
-        <Switch>
-          <Route exact path='/' component={Top} />
-          <Route path='/signin' component={SignIn} />
-          <Route path='/signup' component={SignUp} />
-          <Route path='/contact' component={Contact} />
-          <Route path="/shop/:id" component={Shop}/>
-          <Route path='/menu/:id' component={Menu} />
-          <Route path='/myshop' component={MyShop} />
-        </Switch>
+        <main style={{overflow:"auto", marginBottom:"20%"}}>
+          <Switch>
+            <Route exact path='/' component={Top} />
+            <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/contact' component={Contact} />
+            <Route path="/shop/:id" component={Shop}/>
+            <Route path='/menu/:id' component={Menu} />
+            <Route path='/myshop' component={MyShop} />
+          </Switch>
+        </main>
         <BottomNav/>
       </div>
     </BrowserRouter>
